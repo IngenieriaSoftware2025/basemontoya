@@ -8,6 +8,80 @@
     <link rel="stylesheet" href="<?= asset('build/styles.css') ?>">
     <title>DemoApp</title>
 </head>
+
+<style>
+    .get-in-touch {
+  max-width: 800px;
+  margin: 50px auto;
+  position: relative;
+
+}
+.get-in-touch .title {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 3.2em;
+  line-height: 48px;
+  padding-bottom: 48px;
+     color: #5543ca;
+    background: #5543ca;
+    background: -moz-linear-gradient(left,#f4524d  0%,#5543ca 100%);
+    background: -webkit-linear-gradient(left,#f4524d  0%,#5543ca 100%);
+    background: linear-gradient(to right,#f4524d  0%,#5543ca  100%);
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-form .form-field {
+  position: relative;
+  margin: 32px 0;
+}
+.contact-form .input-text {
+  display: block;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  border-color: #5543ca;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+}
+.contact-form .input-text:focus {
+  outline: none;
+}
+.contact-form .input-text:focus + .label,
+.contact-form .input-text.not-empty + .label {
+  -webkit-transform: translateY(-24px);
+          transform: translateY(-24px);
+}
+.contact-form .label {
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #5543ca;
+  cursor: text;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, 
+  -webkit-transform .2s ease-in-out;
+}
+.contact-form .submit-btn {
+  display: inline-block;
+  background-color: #000;
+   background-image: linear-gradient(125deg,#a72879,#064497);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  width:200px;
+  cursor: pointer;
+}
+
+</style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
         
@@ -16,7 +90,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="/ejemplo/">
+            <a class="navbar-brand" href="/basemontoya">
                 <img src="<?= asset('./images/cit.png') ?>" width="35px'" alt="cit" >
                 Aplicaciones
             </a>
@@ -24,7 +98,7 @@
                 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 0;">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/ejemplo/"><i class="bi bi-house-fill me-2"></i>Inicio</a>
+                        <a class="nav-link" aria-current="page" href="/basemontoya/cliente"><i class="bi bi-house-fill me-2"></i>Inicio</a>
                     </li>
   
                     <div class="nav-item dropdown " >
