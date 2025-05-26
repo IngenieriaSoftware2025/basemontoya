@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\ProveedorController;
+use Controllers\ProductoController;
 use Controllers\ClienteController;  // ✅ CORRECTO
 use MVC\Router;
 use Controllers\AppController;
@@ -26,6 +27,14 @@ $router->get('/proveedores/buscarAPI', [ProveedorController::class, 'buscarAPI']
 $router->post('/proveedores/modificarAPI', [ProveedorController::class, 'modificarAPI']);
 $router->get('/proveedores/eliminar', [ProveedorController::class, 'EliminarAPI']);
 
+
+//Rutas Productos
+$router->get('/producto', [ProductoController::class, 'renderizarPagina']);
+$router->post('/productos/guardarAPI', [ProductoController::class, 'guardarAPI']);
+$router->get('/productos/buscarAPI', [ProductoController::class, 'buscarAPI']);
+$router->post('/productos/modificarAPI', [ProductoController::class, 'modificarAPI']);
+$router->get('/productos/eliminar', [ProductoController::class, 'EliminarAPI']);
+$router->get('/productos/obtenerProveedoresAPI', [ProductoController::class, 'obtenerProveedoresAPI']);
 
 
 

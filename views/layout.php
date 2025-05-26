@@ -49,7 +49,7 @@
                         <ul class="dropdown-menu  dropdown-menu-dark "id="dropwdownRevision" style="margin: 0;">
                             <!-- <h6 class="dropdown-header">Información</h6> -->
                             <li>
-                                <a class="dropdown-item nav-link text-white " href="/basemontoya/proveedor"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Crear</a>
+                                <a class="dropdown-item nav-link text-white " href="/basemontoya/producto"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Crear</a>
                             </li>
                         
                     
