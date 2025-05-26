@@ -210,15 +210,11 @@
                             <div class="row g-3">
                                 
                                 <!-- Campo: País (SELECT) -->
-                                <div class="col-md-6">
-                                    <div class="form-floating">
+                               <div class="col-md-6">
+                                <div class="form-floating">
                                         <select class="form-select border-2" id="cli_pais" name="cli_pais" required>
-                                            <option value="">Seleccionar país...</option>
-                                            <option value="Guatemala" data-codigo="+502" data-flag="🇬🇹">Guatemala</option>
-                                            <option value="México" data-codigo="+52" data-flag="🇲🇽">México</option>
-                                            <option value="Estados Unidos" data-codigo="+1" data-flag="🇺🇸">Estados Unidos</option>
-                                            <option value="España" data-codigo="+34" data-flag="🇪🇸">España</option>
-                                            <option value="Colombia" data-codigo="+57" data-flag="🇨🇴">Colombia</option>
+                                            <option value="">Cargando países...</option>
+                                            <!-- Los países se cargan automáticamente desde la API -->
                                         </select>
                                         <label for="cli_pais"><i class="bi bi-flag me-1"></i>País</label>
                                         <div class="invalid-feedback">
@@ -372,17 +368,28 @@
     </div>
 </div>
 
-<div class="row justify-content-center p-3">
-    <div class="col-lg-10">
-        <div class="card custom-card shadow-lg" style="border-radius: 10px; border: 1px solid #007bff;">
-            <div class="card-body p-3">
-                <h3 class="text-center">USUARIOS REGISTRADOS EN LA BASE DE DATOS</h3>
+<!-- -------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------- -->
+<!-- ----------------TABLA------------------------------------------- -->
 
-                <div class="table-responsive p-2">
-                    <table class="table table-striped table-hover table-bordered w-100 table-sm" id="TableUsuarios">
-                    </table>
+
+<div class="container-fluid py-5" style="background: #f8f9fa;">
+    <div class="row justify-content-center">
+        <div class="col-11">
+            <div class="card shadow border-0" style="border-radius: 20px;">
+                <div class="card-header py-4 border-0" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px 20px 0 0;">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-table text-white me-3" style="font-size: 1.5rem;"></i>
+                        <h4 class="text-white mb-0 fw-bold">CLIENTES REGISTRADOS</h4>
+                    </div>
                 </div>
-
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <!-- ✅ SOLO ESTO - DataTable hace el resto -->
+                        <table class="table table-hover align-middle" id="TableClientes">
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -495,3 +502,5 @@
 6. ✅ Input type="date" para fechas
 7. ✅ Botones con IDs específicos para JavaScript
 -->
+
+<script src="<?= asset('build/js/cliente/index.js') ?>"></script>

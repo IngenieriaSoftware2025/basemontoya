@@ -1,28 +1,22 @@
 <?php 
 require_once __DIR__ . '/../includes/app.php';
 
-
-use Controllers\clienteController;  // 🎯 AGREGAR: Importar ClienteController
+use Controllers\ClienteController;  // ✅ CORRECTO
 use MVC\Router;
 use Controllers\AppController;
 
 $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);
 
-//Rutas Principales
 $router->get('/', [AppController::class,'index']);
 
-//Vistas
-$router->get('/cliente', [clienteController::class, 'renderizarPagina']);
-
-// 🎯 AGREGAR: RUTAS PARA CLIENTES (SIGUIENDO EL MISMO PATRÓN)
+// ✅ SOLO ESTAS RUTAS PARA CLIENTES
 $router->get('/cliente', [ClienteController::class, 'renderizarPagina']);
 $router->post('/clientes/guardarAPI', [ClienteController::class, 'guardarAPI']);
 $router->get('/clientes/buscarAPI', [ClienteController::class, 'buscarAPI']);
 $router->post('/clientes/modificarAPI', [ClienteController::class, 'modificarAPI']);
 $router->get('/clientes/eliminar', [ClienteController::class, 'EliminarAPI']);
 
-// Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
 
 /*

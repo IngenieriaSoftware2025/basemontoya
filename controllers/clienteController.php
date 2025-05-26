@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Exception;
 use Model\ActiveRecord;
-use Model\cliente;  // 🎯 CAMBIO: Importar Cliente en lugar de Usuarios
+use Model\Cliente;  // ✅ CORRECTO - con mayúscula
 use MVC\Router;
 
 class ClienteController extends ActiveRecord  // 🎯 CAMBIO: ClienteController en lugar de UsuarioController
@@ -84,6 +84,28 @@ class ClienteController extends ActiveRecord  // 🎯 CAMBIO: ClienteController 
             ]);
             return;
         }
+
+        //Verifico si ya esta en la base de datos el nit e email
+        $clienteExistente = Cliente::verificarClienteExistente($_POST['cli_email'], $_POST['cli_nit']);
+    
+    if ($clienteExistente['email_existe']) {
+        http_response_code(400);
+        echo json_encode([
+            'codigo' => 0,
+            'mensaje' => 'Ya existe un cliente registrado con este correo electrónico'
+        ]);
+        return;
+    }
+
+    if ($clienteExistente['nit_existe']) {
+        http_response_code(400);
+        echo json_encode([
+            'codigo' => 0,
+            'mensaje' => 'Ya existe un cliente registrado con este número de NIT'
+        ]);
+        return;
+    }
+
 
         // 🎯 NUEVOS CAMPOS: Validar campos específicos de cliente
         $_POST['cli_estado'] = htmlspecialchars($_POST['cli_estado']);

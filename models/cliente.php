@@ -61,6 +61,21 @@ class Cliente extends ActiveRecord {
         return self::SQL($sql);
     }
 
+     public static function verificarClienteExistente($email, $nit) {
+        // Verificar email
+        $sqlEmail = "SELECT cli_id FROM cliente WHERE cli_email = '$email' AND situacion = 1";
+        $resultadoEmail = self::fetchArray($sqlEmail);
+        
+        // Verificar NIT
+        $sqlNit = "SELECT cli_id FROM cliente WHERE cli_nit = $nit AND situacion = 1";
+        $resultadoNit = self::fetchArray($sqlNit);
+        
+        return [
+            'email_existe' => !empty($resultadoEmail),
+            'nit_existe' => !empty($resultadoNit)
+        ];
+    }
+
 }
 
 /*
