@@ -8,6 +8,7 @@ module.exports = {
     'js/cliente/index' : './src/js/cliente/index.js',
     'js/proveedor/index' : './src/js/proveedor/index.js',
     'js/producto/index' : './src/js/producto/index.js',
+    'js/reserva/index' : './src/js/reserva/index.js',
   },
   output: {
     filename: '[name].js',

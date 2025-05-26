@@ -57,6 +57,21 @@
                         </ul>
                     </div> 
 
+                    <div class="nav-item dropdown " >
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-gear me-2"></i>Reservas
+                        </a>
+                        <ul class="dropdown-menu  dropdown-menu-dark "id="dropwdownRevision" style="margin: 0;">
+                            <!-- <h6 class="dropdown-header">Información</h6> -->
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/basemontoya/reserva"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Crear</a>
+                            </li>
+                        
+                    
+                        
+                        </ul>
+                    </div> 
+
                 </ul> 
                 <div class="col-lg-1 d-grid mb-lg-0 mb-2">
                     <!-- Ruta relativa desde el archivo donde se incluye menu.php -->

@@ -3,6 +3,7 @@ require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\ProveedorController;
 use Controllers\ProductoController;
+use Controllers\ReservaController;  
 use Controllers\ClienteController;  // ✅ CORRECTO
 use MVC\Router;
 use Controllers\AppController;
@@ -35,6 +36,17 @@ $router->get('/productos/buscarAPI', [ProductoController::class, 'buscarAPI']);
 $router->post('/productos/modificarAPI', [ProductoController::class, 'modificarAPI']);
 $router->get('/productos/eliminar', [ProductoController::class, 'EliminarAPI']);
 $router->get('/productos/obtenerProveedoresAPI', [ProductoController::class, 'obtenerProveedoresAPI']);
+
+//Rutas Reserva
+$router->get('/reserva', [ReservaController::class, 'renderizarPagina']);
+$router->post('/reserva/guardarAPI', [ReservaController::class, 'guardarAPI']);
+$router->get('/reserva/buscarAPI', [ReservaController::class, 'buscarAPI']);
+$router->post('/reserva/modificarAPI', [ReservaController::class, 'modificarAPI']);
+$router->get('/reserva/eliminar', [ReservaController::class, 'EliminarAPI']);
+$router->get('/reserva/obtenerReservaAPI', [ReservaController::class, 'obtenerReservaAPI']);
+$router->post('/reserva/cambiarEstadoAPI', [ReservaController::class, 'cambiarEstadoAPI']);
+$router->get('/reserva/obtenerClientesAPI', [ReservaController::class, 'obtenerClientesAPI']);
+$router->get('/reserva/obtenerProductosAPI', [ReservaController::class, 'obtenerProductosAPI']);
 
 
 
