@@ -24,17 +24,32 @@
                 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 0;">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/basemontoya/cliente"><i class="bi bi-house-fill me-2"></i>Inicio</a>
+                        <a class="nav-link" aria-current="page" href="/basemontoya/cliente"><i class="bi bi-house-fill me-2"></i>Clientes</a>
                     </li>
   
                     <div class="nav-item dropdown " >
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear me-2"></i>Dropdown
+                            <i class="bi bi-gear me-2"></i>Proveedor
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-dark "id="dropwdownRevision" style="margin: 0;">
                             <!-- <h6 class="dropdown-header">Información</h6> -->
                             <li>
-                                <a class="dropdown-item nav-link text-white " href="/aplicaciones/nueva"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Subitem</a>
+                                <a class="dropdown-item nav-link text-white " href="/basemontoya/proveedor"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Crear</a>
+                            </li>
+                        
+                    
+                        
+                        </ul>
+                    </div> 
+
+                    <div class="nav-item dropdown " >
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-gear me-2"></i>Producto
+                        </a>
+                        <ul class="dropdown-menu  dropdown-menu-dark "id="dropwdownRevision" style="margin: 0;">
+                            <!-- <h6 class="dropdown-header">Información</h6> -->
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/basemontoya/proveedor"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Crear</a>
                             </li>
                         
                     

@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\ProveedorController;
 use Controllers\ClienteController;  // ✅ CORRECTO
 use MVC\Router;
 use Controllers\AppController;
@@ -16,6 +17,17 @@ $router->post('/clientes/guardarAPI', [ClienteController::class, 'guardarAPI']);
 $router->get('/clientes/buscarAPI', [ClienteController::class, 'buscarAPI']);
 $router->post('/clientes/modificarAPI', [ClienteController::class, 'modificarAPI']);
 $router->get('/clientes/eliminar', [ClienteController::class, 'EliminarAPI']);
+
+
+//Rutad Proveedor
+$router->get('/proveedor', [ProveedorController::class, 'renderizarPagina']);
+$router->post('/proveedores/guardarAPI', [ProveedorController::class, 'guardarAPI']);
+$router->get('/proveedores/buscarAPI', [ProveedorController::class, 'buscarAPI']);
+$router->post('/proveedores/modificarAPI', [ProveedorController::class, 'modificarAPI']);
+$router->get('/proveedores/eliminar', [ProveedorController::class, 'EliminarAPI']);
+
+
+
 
 $router->comprobarRutas();
 
