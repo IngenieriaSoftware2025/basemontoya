@@ -18,13 +18,13 @@ class ReservaController extends ActiveRecord
         $router->render('reserva/index', []);
     }
 
-    // 🎯 MÉTODO: Guardar reserva completa (reserva + detalles)
+    // MÉTODO: Guardar reserva completa (reserva + detalles)
     public static function guardarAPI()
     {
         getHeadersApi();
 
         try {
-            // 🎯 VALIDACIÓN: Cliente
+            // VALIDACIÓN: Cliente
             $_POST['cli_id'] = filter_var($_POST['cli_id'], FILTER_VALIDATE_INT);
             if (empty($_POST['cli_id'])) {
                 http_response_code(400);
@@ -35,7 +35,7 @@ class ReservaController extends ActiveRecord
                 return;
             }
 
-            // 🎯 VALIDACIÓN: Fecha límite
+            // VALIDACIÓN: Fecha límite
             if (empty($_POST['fecha_limite'])) {
                 http_response_code(400);
                 echo json_encode([
@@ -57,7 +57,7 @@ class ReservaController extends ActiveRecord
                 return;
             }
 
-            // 🎯 VALIDACIÓN: Productos
+            // VALIDACIÓN: Productos
             $productos = json_decode($_POST['productos'], true);
             if (empty($productos) || !is_array($productos)) {
                 http_response_code(400);
@@ -84,14 +84,14 @@ class ReservaController extends ActiveRecord
                 $totalReserva += $subtotal;
             }
 
-            // 🎯 PREPARAR DATOS DE LA RESERVA
+            // PREPARAR DATOS DE LA RESERVA
             $_POST['observaciones'] = htmlspecialchars($_POST['observaciones'] ?? '');
             $_POST['fecha_reserva'] = date('Y-m-d H:i:s'); // Fecha actual
             $_POST['fecha_limite'] = date('Y-m-d H:i:s', strtotime($_POST['fecha_limite']));
             $_POST['total_reserva'] = $totalReserva;
             $_POST['estado_reserva'] = 'P'; // Pendiente por defecto
 
-            // 🎯 CREAR LA RESERVA
+            // CREAR LA RESERVA
             $reserva = new Reserva([
                 'cli_id' => $_POST['cli_id'],
                 'fecha_reserva' => $_POST['fecha_reserva'],
@@ -108,7 +108,7 @@ class ReservaController extends ActiveRecord
                 // Obtener el ID de la reserva recién creada
                 $reservaId = $reserva->res_id;
 
-                // 🎯 CREAR LOS DETALLES DE LA RESERVA
+                // CREAR LOS DETALLES DE LA RESERVA
                 $productosParaGuardar = [];
                 foreach ($productos as $producto) {
                     $productosParaGuardar[] = [
@@ -142,7 +142,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODO: Buscar reservas con información completa
+    // MÉTODO: Buscar reservas con información completa
     public static function buscarAPI()
     {
         try {
@@ -165,7 +165,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODO: Obtener reserva específica con sus detalles
+    // MÉTODO: Obtener reserva específica con sus detalles
     public static function obtenerReservaAPI()
     {
         try {
@@ -199,7 +199,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODO: Modificar reserva (actualiza reserva + detalles)
+    // MÉTODO: Modificar reserva (actualiza reserva + detalles)
     public static function modificarAPI()
     {
         getHeadersApi();
@@ -235,7 +235,7 @@ class ReservaController extends ActiveRecord
                 $totalReserva += $producto['cantidad'] * $producto['precio_unitario'];
             }
 
-            // 🎯 ACTUALIZAR LA RESERVA
+            // ACTUALIZAR LA RESERVA
             $reserva = Reserva::find($id);
             $reserva->sincronizar([
                 'cli_id' => $_POST['cli_id'],
@@ -247,7 +247,7 @@ class ReservaController extends ActiveRecord
             ]);
             $reserva->actualizar();
 
-            // 🎯 ELIMINAR DETALLES ANTERIORES Y CREAR NUEVOS
+            // ELIMINAR DETALLES ANTERIORES Y CREAR NUEVOS
             DetalleReserva::EliminarDetallesPorReserva($id);
 
             $productosParaGuardar = [];
@@ -278,7 +278,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODO: Eliminar reserva (elimina reserva + detalles)
+    // MÉTODO: Eliminar reserva (elimina reserva + detalles)
     public static function EliminarAPI()
     {
         try {
@@ -311,7 +311,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODO: Cambiar estado de reserva
+    // MÉTODO: Cambiar estado de reserva
     public static function cambiarEstadoAPI()
     {
         getHeadersApi();
@@ -363,7 +363,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODOS AUXILIARES: Para obtener datos en selects
+    // MÉTODOS AUXILIARES: Para obtener datos en selects
     public static function obtenerClientesAPI()
     {
         try {
@@ -408,7 +408,7 @@ class ReservaController extends ActiveRecord
         }
     }
 
-    // 🎯 MÉTODO: Dashboard de reservas
+    // MÉTODO: Dashboard de reservas
     public static function estadisticasAPI()
     {
         try {
@@ -438,44 +438,44 @@ class ReservaController extends ActiveRecord
 
 /*
 ==========================================
-📝 FUNCIONALIDADES DEL CONTROLADOR:
+FUNCIONALIDADES DEL CONTROLADOR:
 ==========================================
 
-🔄 OPERACIONES PRINCIPALES:
+OPERACIONES PRINCIPALES:
 - guardarAPI(): Crea reserva + detalles en una transacción
 - modificarAPI(): Actualiza reserva y reemplaza detalles
 - buscarAPI(): Lista reservas con información de clientes
 - EliminarAPI(): Elimina reserva y detalles
 - cambiarEstadoAPI(): Actualiza solo el estado
 
-🔄 MÉTODOS AUXILIARES:
+MÉTODOS AUXILIARES:
 - obtenerReservaAPI(): Para editar (trae reserva + detalles)
 - obtenerClientesAPI(): Para select de clientes
 - obtenerProductosAPI(): Para select de productos
 - estadisticasAPI(): Para dashboard
 
-🔄 VALIDACIONES ESPECÍFICAS:
+VALIDACIONES ESPECÍFICAS:
 - Fecha límite debe ser futura
 - Al menos un producto por reserva
 - Estados válidos (P, C, X)
 - Cálculo automático de totales
 - Productos con stock disponible
 
-🔄 LÓGICA DE NEGOCIO:
+LÓGICA DE NEGOCIO:
 - Manejo transaccional (reserva + detalles)
 - Cálculos automáticos de subtotales y totales
 - Estados de reserva con workflow
 - Fechas de vencimiento
 
 ==========================================
-✅ PUNTOS CLAVE PARA EL EXAMEN:
+PUNTOS CLAVE PARA EL EXAMEN:
 ==========================================
 
-1. ✅ UN CONTROLADOR maneja AMBAS TABLAS
-2. ✅ Transacciones para mantener consistencia
-3. ✅ JOINs complejos para obtener datos completos
-4. ✅ Validaciones de negocio específicas
-5. ✅ APIs auxiliares para cargar selects
-6. ✅ Manejo de JSON para múltiples productos
-7. ✅ Estados y workflow de reservas
+1. UN CONTROLADOR maneja AMBAS TABLAS
+2. Transacciones para mantener consistencia
+3. JOINs complejos para obtener datos completos
+4. Validaciones de negocio específicas
+5. APIs auxiliares para cargar selects
+6. Manejo de JSON para múltiples productos
+7. Estados y workflow de reservas
 */

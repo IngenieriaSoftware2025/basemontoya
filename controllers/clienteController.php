@@ -106,7 +106,7 @@ class ClienteController extends ActiveRecord  // 🎯 CAMBIO: ClienteController 
         return;
     }
 
-
+//-------------------------------------------------------------------
         // 🎯 NUEVOS CAMPOS: Validar campos específicos de cliente
         $_POST['cli_estado'] = htmlspecialchars($_POST['cli_estado']);
         $_POST['cli_direccion'] = htmlspecialchars($_POST['cli_direccion']);

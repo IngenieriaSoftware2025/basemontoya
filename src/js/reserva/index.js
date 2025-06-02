@@ -1,4 +1,4 @@
-// 🎯 IMPORTS NECESARIOS
+// IMPORTS NECESARIOS
 import { Dropdown } from "bootstrap";
 import Swal from "sweetalert2";
 import { validarFormulario } from '../funciones';
@@ -6,7 +6,7 @@ import DataTable from "datatables.net-bs5";
 import { lenguaje } from "../lenguaje";
 import { data } from "jquery";
 
-// 🎯 ELEMENTOS DEL DOM PARA RESERVAS
+// ELEMENTOS DEL DOM PARA RESERVAS
 const FormReservas = document.getElementById('FormReservas');
 const BtnGuardar = document.getElementById('BtnGuardar');
 const BtnModificar = document.getElementById('BtnModificar');
@@ -25,7 +25,7 @@ const ContadorProductos = document.getElementById('contador_productos');
 let productosReserva = [];
 let contadorFilas = 0;
 
-// 🌍 FUNCIÓN: CARGAR CLIENTES DESDE LA BASE DE DATOS
+//  FUNCIÓN: CARGAR CLIENTES DESDE LA BASE DE DATOS
 const CargarClientes = async () => {
     try {
         const url = '/basemontoya/reserva/obtenerClientesAPI';
@@ -259,7 +259,7 @@ const EliminarProducto = (event) => {
     ActualizarTotales();
 };
 
-// 💰 FUNCIÓN: ACTUALIZAR TOTALES
+// FUNCIÓN: ACTUALIZAR TOTALES
 const ActualizarTotales = () => {
     const total = productosReserva.reduce((sum, producto) => sum + producto.subtotal, 0);
     const cantidadProductos = productosReserva.length;
@@ -276,7 +276,7 @@ const ActualizarTotales = () => {
     }
 };
 
-// 🎯 FUNCIÓN: Guardar Reserva
+// FUNCIÓN: Guardar Reserva
 const GuardarReserva = async (event) => {
     event.preventDefault();
     BtnGuardar.disabled = true;
@@ -356,7 +356,7 @@ const GuardarReserva = async (event) => {
     BtnGuardar.disabled = false;
 }
 
-// 🎯 CONFIGURACIÓN COMÚN PARA DATATABLES
+// CONFIGURACIÓN COMÚN PARA DATATABLES
 const configDataTable = {
     dom: `
         <"row mt-3 justify-content-between" 
@@ -498,13 +498,13 @@ const configDataTable = {
     ]
 };
 
-// 🎯 DATATABLES MÚLTIPLES
+// DATATABLES MÚLTIPLES
 const datatablePendientes = new DataTable('#TableReservasPendientes', configDataTable);
 const datatableCompletadas = new DataTable('#TableReservasCompletadas', configDataTable);
 const datatableCanceladas = new DataTable('#TableReservasCanceladas', configDataTable);
 const datatableTodas = new DataTable('#TableReservasTodas', configDataTable);
 
-// 🎯 FUNCIÓN: Buscar Reservas (actualizada para múltiples tablas)
+// FUNCIÓN: Buscar Reservas (actualizada para múltiples tablas)
 const BuscarReservas = async () => {
     const url = '/basemontoya/reserva/buscarAPI';
     const config = {
@@ -552,7 +552,7 @@ const BuscarReservas = async () => {
     }
 }
 
-// 🎯 FUNCIÓN: Actualizar contadores en badges
+// FUNCIÓN: Actualizar contadores en badges
 const ActualizarContadores = (pendientes, completadas, canceladas, todas) => {
     // Contadores en header
     document.getElementById('count_pendientes').textContent = pendientes;
@@ -566,7 +566,7 @@ const ActualizarContadores = (pendientes, completadas, canceladas, todas) => {
     document.getElementById('tab_badge_todas').textContent = todas;
 };
 
-// 🎯 FUNCIÓN: Completar Reserva (P → C)
+// FUNCIÓN: Completar Reserva (P → C)
 const CompletarReserva = async (e) => {
     const idReserva = e.currentTarget.dataset.id;
 
@@ -623,7 +623,7 @@ const CompletarReserva = async (e) => {
     }
 };
 
-// 🎯 FUNCIÓN: Cancelar Reserva (P → X)
+// FUNCIÓN: Cancelar Reserva (P → X)
 const CancelarReserva = async (e) => {
     const idReserva = e.currentTarget.dataset.id;
 
@@ -680,7 +680,7 @@ const CancelarReserva = async (e) => {
     }
 };
 
-// 🎯 FUNCIÓN: Ver Detalles de Reserva
+// FUNCIÓN: Ver Detalles de Reserva
 const VerDetallesReserva = async (e) => {
     const idReserva = e.currentTarget.dataset.id;
 
@@ -782,7 +782,7 @@ const VerDetallesReserva = async (e) => {
     }
 };
 
-// 🎯 FUNCIÓN: Limpiar formulario
+// FUNCIÓN: Limpiar formulario
 const limpiarTodo = () => {
     FormReservas.reset();
     BtnGuardar.classList.remove('d-none');
@@ -813,7 +813,7 @@ const limpiarTodo = () => {
     }
 };
 
-// 🎯 FUNCIÓN: Eliminar Reserva
+// FUNCIÓN: Eliminar Reserva
 const EliminarReservas = async (e) => {
     const idReserva = e.currentTarget.dataset.id
 
@@ -865,7 +865,7 @@ const EliminarReservas = async (e) => {
     }
 }
 
-// 🎯 INICIALIZACIÓN: Event Listeners
+// INICIALIZACIÓN: Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Cargar datos al iniciar
     CargarClientes();
@@ -882,10 +882,10 @@ document.addEventListener('DOMContentLoaded', () => {
         fechaLimite.value = mañana.toISOString().split('T')[0];
     }
     
-    console.log('✅ Módulo de reservas iniciado correctamente');
+    console.log('Módulo de reservas iniciado correctamente');
 });
 
-// 🎯 EVENT LISTENERS PARA MÚLTIPLES DATATABLES
+// EVENT LISTENERS PARA MÚLTIPLES DATATABLES
 // Agregar producto
 BtnAgregarProducto.addEventListener('click', AgregarProducto);
 
@@ -934,76 +934,76 @@ BtnLimpiar.addEventListener('click', limpiarTodo);
 
 /*
 =======================================================
-📝 FUNCIONALIDADES IMPLEMENTADAS:
+FUNCIONALIDADES IMPLEMENTADAS:
 =======================================================
 
-🎯 MÚLTIPLES TABLAS CON ESTADOS:
+MÚLTIPLES TABLAS CON ESTADOS:
 - 4 DataTables independientes (Pendientes, Completadas, Canceladas, Todas)
 - Filtrado automático por estado
 - Contadores en tiempo real
 - Botones específicos según estado
 
-🛒 MANEJO DE PRODUCTOS:
+MANEJO DE PRODUCTOS:
 - Selección dinámica de clientes y productos
 - Validación de stock disponible
 - Tabla dinámica de productos en reserva
 - Cálculos automáticos de totales
 - Eliminación individual de productos
 
-🔄 CAMBIO DE ESTADOS:
+CAMBIO DE ESTADOS:
 - Completar reserva (P → C) con confirmación
 - Cancelar reserva (P → X) con advertencia
 - Validaciones antes de cambio de estado
 - Actualización automática de tablas
 
-👁️ MODAL DE DETALLES:
+MODAL DE DETALLES:
 - Información completa del cliente
 - Lista detallada de productos
 - Cálculos y totales
 - Observaciones de la reserva
 
-📊 VALIDACIONES COMPLETAS:
+VALIDACIONES COMPLETAS:
 - Al menos un producto por reserva
 - Stock disponible para cada producto
 - Fechas límite válidas
 - Campos obligatorios del formulario
 
 =======================================================
-🎯 BOTONES POR ESTADO IMPLEMENTADOS:
+BOTONES POR ESTADO IMPLEMENTADOS:
 =======================================================
 
-📋 PENDIENTES:
-- ✅ Completar (botón verde con check)
-- ❌ Cancelar (botón outline rojo con X)
-- ✏️ Modificar (botón amarillo con lápiz)
-- 👁️ Ver Detalles (botón azul con ojo)
-- 🗑️ Eliminar (botón rojo con trash)
+PENDIENTES:
+- Completar (botón verde con check)
+- Cancelar (botón outline rojo con X)
+- Modificar (botón amarillo con lápiz)
+- Ver Detalles (botón azul con ojo)
+- Eliminar (botón rojo con trash)
 
-✅ COMPLETADAS:
-- 👁️ Ver Detalles
-- 🗑️ Eliminar (opcional)
+COMPLETADAS:
+- Ver Detalles
+- Eliminar (opcional)
 
-❌ CANCELADAS:
-- 👁️ Ver Detalles
-- 🗑️ Eliminar (opcional)
+CANCELADAS:
+- Ver Detalles
+- Eliminar (opcional)
 
-📊 TODAS:
+TODAS:
 - Botones dinámicos según estado actual
 
 =======================================================
-✅ PARA TU EXAMEN:
+PARA TU EXAMEN:
 =======================================================
 
-🔄 PUNTOS CLAVE:
-1. ✅ Sistema de múltiples tablas con pestañas
-2. ✅ Estados de reserva (P, C, X) con workflow
-3. ✅ Botones específicos según estado
-4. ✅ Modal de detalles con información completa
-5. ✅ Cambio de estados con confirmaciones
-6. ✅ Contadores automáticos en badges
-7. ✅ Manejo de productos múltiples en reserva
+PUNTOS CLAVE:
+1. Sistema de múltiples tablas con pestañas
+2. Estados de reserva (P, C, X) con workflow
+3. Botones específicos según estado
+4. Modal de detalles con información completa
+5. Cambio de estados con confirmaciones
+6. Contadores automáticos en badges
+7. Manejo de productos múltiples en reserva
 
-🔄 URLs NECESARIAS EN ROUTES (CORREGIDAS):
+URLs NECESARIAS EN ROUTES:
 - /reserva/buscarAPI
 - /reserva/guardarAPI
 - /reserva/modificarAPI
@@ -1013,12 +1013,12 @@ BtnLimpiar.addEventListener('click', limpiarTodo);
 - /reserva/obtenerClientesAPI
 - /reserva/obtenerProductosAPI
 
-🔄 ESTADOS DE RESERVA:
+ ESTADOS DE RESERVA:
 - P = Pendiente (recién creada)
 - C = Completada (cliente recogió productos)
 - X = Cancelada (no se entregó)
 
-🔄 ARCHIVOS NECESARIOS:
+ ARCHIVOS NECESARIOS:
 1. src/js/reserva/index.js (este archivo)
 2. views/reserva/index.php (vista)
 3. controllers/ReservaController.php
@@ -1026,11 +1026,11 @@ BtnLimpiar.addEventListener('click', limpiarTodo);
 5. Agregar rutas en public/index.php
 6. Agregar entrada en webpack.config.js
 
-🔄 WEBPACK ENTRY (CORREGIDO):
+ WEBPACK ENTRY:
 'js/reserva/index' : './src/js/reserva/index.js',
 
-🔄 RUTAS CORREGIDAS:
-//Rutas Reserva
+ RUTAS CORREGIDAS:
+Rutas Reserva
 $router->get('/reserva', [ReservaController::class, 'renderizarPagina']);
 $router->post('/reserva/guardarAPI', [ReservaController::class, 'guardarAPI']);
 $router->get('/reserva/buscarAPI', [ReservaController::class, 'buscarAPI']);
